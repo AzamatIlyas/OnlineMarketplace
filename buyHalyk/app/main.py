@@ -1,0 +1,32 @@
+from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
+
+from app.api.router.auth import router as auth_router
+from app.api.router.user import router as user_router
+from app.api.router.ad_router.ad import router as ad_router
+from app.api.router.ad_router.ad_favourites_likes import router as ad_favourites_likes_router
+from app.api.router.category import router as category_router
+from app.api.router.favourite import router as favourite_router
+from app.api.router.ad_likes import router as ad_likes_router
+
+app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:5173", "http://localhost:3000"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+app.mount("/static", StaticFiles(directory="app/static"), name="static")
+
+
+app.include_router(auth_router)
+app.include_router(user_router)
+app.include_router(category_router)
+app.include_router(ad_router)
+app.include_router(ad_favourites_likes_router)
+app.include_router(favourite_router)
+app.include_router(ad_likes_router)
