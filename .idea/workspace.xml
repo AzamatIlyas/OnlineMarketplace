@@ -1,51 +1,205 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="d44e5309-cebe-4621-afe6-0599334a6d66" name="Changes" comment="" />
+    <list default="true" id="1002820a-58a3-4235-b9cb-8dafc247538a" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/buyHalyk/.env" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/buyHalyk/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/buyHalyk/.idea/BIS project.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/buyHalyk/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/buyHalyk/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/buyHalyk/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/buyHalyk/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/buyHalyk/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/buyHalyk/alembic.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/buyHalyk/app/api/dependencies.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/buyHalyk/app/api/router/ad_likes.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/buyHalyk/app/api/router/ad_router/ad.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/buyHalyk/app/api/router/ad_router/ad_favourites_likes.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/buyHalyk/app/api/router/auth.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/buyHalyk/app/api/router/category.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/buyHalyk/app/api/router/chat.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/buyHalyk/app/api/router/favourite.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/buyHalyk/app/api/router/user.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/buyHalyk/app/core/settings.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/buyHalyk/app/db/base.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/buyHalyk/app/db/models/ad.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/buyHalyk/app/db/models/ad_image.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/buyHalyk/app/db/models/ad_like.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/buyHalyk/app/db/models/ad_view.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/buyHalyk/app/db/models/category.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/buyHalyk/app/db/models/chat.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/buyHalyk/app/db/models/favourite.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/buyHalyk/app/db/models/message.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/buyHalyk/app/db/models/notification.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/buyHalyk/app/db/models/order.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/buyHalyk/app/db/models/payment.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/buyHalyk/app/db/models/report.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/buyHalyk/app/db/models/review.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/buyHalyk/app/db/models/user.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/buyHalyk/app/db/repository/ad.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/buyHalyk/app/db/repository/ad_like.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/buyHalyk/app/db/repository/base.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/buyHalyk/app/db/repository/category.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/buyHalyk/app/db/repository/chat.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/buyHalyk/app/db/repository/favourite.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/buyHalyk/app/db/repository/user.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/buyHalyk/app/main.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/buyHalyk/app/migration/README" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/buyHalyk/app/migration/env.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/buyHalyk/app/migration/script.py.mako" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/buyHalyk/app/migration/versions/06a49361fc61_ad_like_created_at.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/buyHalyk/app/migration/versions/827a5565b4fc_correct_ad_id.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/buyHalyk/app/migration/versions/8e6bc72c7e85_ad_settings.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/buyHalyk/app/migration/versions/ada653f7aea3_creating_tables.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/buyHalyk/app/migration/versions/c8936f399cbd_favourite_model_created_at.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/buyHalyk/app/migration/versions/ef239a3e36a1_ad_image_to_model.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/buyHalyk/app/migration/versions/ff2064e58162_favourite_foreign_key_problem.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/buyHalyk/app/schemas/ad.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/buyHalyk/app/schemas/auth.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/buyHalyk/app/schemas/category.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/buyHalyk/app/schemas/order.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/buyHalyk/app/schemas/user.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/buyHalyk/app/services/ad.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/buyHalyk/app/services/ad_like.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/buyHalyk/app/services/auth.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/buyHalyk/app/services/category.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/buyHalyk/app/services/chat.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/buyHalyk/app/services/favourite.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/buyHalyk/app/services/user.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/buyHalyk/app/services/websocket_manager.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/buyHalyk/frontend/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/buyHalyk/frontend/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/buyHalyk/frontend/eslint.config.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/buyHalyk/frontend/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/buyHalyk/frontend/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/buyHalyk/frontend/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/buyHalyk/frontend/public/vite.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/buyHalyk/frontend/src/App.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/buyHalyk/frontend/src/App.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/buyHalyk/frontend/src/api.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/buyHalyk/frontend/src/assets/react.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/buyHalyk/frontend/src/index.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/buyHalyk/frontend/src/main.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/buyHalyk/frontend/src/pages/Auth.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/buyHalyk/frontend/src/pages/Login.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/buyHalyk/frontend/src/pages/MainPage.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/buyHalyk/frontend/src/pages/Register.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/buyHalyk/frontend/tsconfig.app.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/buyHalyk/frontend/tsconfig.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/buyHalyk/frontend/tsconfig.node.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/buyHalyk/frontend/vite.config.ts" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 1
-}]]></component>
-  <component name="ProjectId" id="33dsOvnStriGBWP0vPtlHUn9mlv" />
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 6
+}</component>
+  <component name="ProjectId" id="3596N3iNMAQWbcELCqpk1gvsU3k" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "main",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/azama/Desktop/OnlineMarketplace",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/azama/Desktop/OnlineMarketplace&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\azama\\Desktop\\BIS project\\frontend\\node_modules\\typescript\\lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\azama\Desktop\BIS project\app\api\router\ad_router" />
+      <recent name="C:\Users\azama\Desktop\BIS project\app" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="main" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+      <module name="BIS project" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="C:\Users\azama\Desktop\BIS project\app\main.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-bf35d07a577b-intellij.indexing.shared.core-IU-252.25557.131" />
-        <option value="bundled-js-predefined-d6986cc7102b-b598e85cdad2-JavaScript-IU-252.25557.131" />
+        <option value="bundled-js-predefined-d6986cc7102b-a71380e98a7c-JavaScript-WS-252.28238.10" />
       </set>
     </attachedChunks>
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="d44e5309-cebe-4621-afe6-0599334a6d66" name="Changes" comment="" />
-      <created>1759658254497</created>
+      <changelist id="1002820a-58a3-4235-b9cb-8dafc247538a" name="Changes" comment="" />
+      <created>1762509897344</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1759658254497</updated>
-      <workItem from="1759658257568" duration="65000" />
+      <updated>1762509897344</updated>
+      <workItem from="1762509898864" duration="13418000" />
+      <workItem from="1762598385167" duration="4296000" />
+      <workItem from="1762863904272" duration="6237000" />
+      <workItem from="1762934559652" duration="2239000" />
+      <workItem from="1762952482375" duration="9978000" />
+      <workItem from="1763008230915" duration="3627000" />
+      <workItem from="1763035048175" duration="12111000" />
+      <workItem from="1763202067890" duration="4534000" />
+      <workItem from="1763388454061" duration="6322000" />
+      <workItem from="1763543633141" duration="659000" />
+      <workItem from="1763544430281" duration="569000" />
+      <workItem from="1763545338014" duration="1347000" />
+      <workItem from="1763611062001" duration="1134000" />
+      <workItem from="1763612282848" duration="5604000" />
+      <workItem from="1763969510143" duration="1083000" />
+      <workItem from="1764171955477" duration="420000" />
+      <workItem from="1764172496846" duration="369000" />
     </task>
     <servers />
   </component>
