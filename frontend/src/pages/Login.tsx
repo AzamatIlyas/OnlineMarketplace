@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "./Auth.css"; // 👈 тот же файл стилей
+import { loginUser } from "../api"; // Предполагаем, что вы импортируете api
 
 export default function Login() {
     const [email, setEmail] = useState("");
@@ -13,26 +13,15 @@ export default function Login() {
         setError("");
 
         try {
-            const response = await fetch("http://localhost:8000/auth/login", {
-                method: "POST",
-                credentials: "include",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ email, password }),
-            });
-
-            if (response.status === 422) {
-                setError("Некорректные данные. Проверьте поля.");
-                return;
-            }
-
-            if (!response.ok) {
-                setError("Неверный логин или пароль");
-                return;
-            }
-
+            await loginUser(email, password);
+            // Если запрос успешен, сервер установил куку
             navigate("/main");
-        } catch {
-            setError("Ошибка соединения с сервером");
+        } catch (err: any) {
+            if (err.message === "Неверные данные") {
+                setError("Неверный логин или пароль");
+            } else {
+                setError("Ошибка соединения с сервером");
+            }
         }
     };
 

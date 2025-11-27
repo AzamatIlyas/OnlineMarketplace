@@ -1,3 +1,4 @@
+from fastapi import HTTPException
 from sqlalchemy import select, insert, or_
 from app.db.base import async_session_maker
 from app.db.models.ad import Ad
@@ -16,12 +17,14 @@ class ChatDAO(BaseDAO):
             return result.scalars().all()
 
     @classmethod
-    async def create_chat(cls, ad_id: int, user_id: int):
+    async def create_chat(cls, ad_id: int, buyer_id: int):
         async with async_session_maker() as session:
             query = select(Ad).where(Ad.id == ad_id)
             result = await session.execute(query)
             ad = result.scalars().first()
-            query = insert(cls.model).values(ad_id=ad_id, buyer_id=user_id, seller_id=ad.user_id)
+            if not ad:
+                return "Ad does not exist"
+            query = insert(cls.model).values(ad_id=ad_id, buyer_id=buyer_id, seller_id=ad.user_id)
             await session.execute(query)
             await session.commit()
             

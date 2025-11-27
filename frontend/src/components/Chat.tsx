@@ -9,7 +9,7 @@ interface Message {
 
 interface ChatProps {
     chatId: number;
-    userId: number; // нужно для определения, кто мы на фронте (для стилизации)
+    userId: number;
 }
 
 const Chat: React.FC<ChatProps> = ({ chatId, userId }) => {
@@ -18,62 +18,64 @@ const Chat: React.FC<ChatProps> = ({ chatId, userId }) => {
     const wsRef = useRef<WebSocket | null>(null);
     const messagesEndRef = useRef<HTMLDivElement>(null);
 
+    // Загружаем историю
     useEffect(() => {
-        // Создаём WS соединение
+        fetch(`http://localhost:8000/chats/${chatId}/messages`, {
+            credentials: "include",
+        })
+            .then((res) => res.json())
+            .then((data) => setMessages(data));
+    }, [chatId]);
+
+    // WebSocket
+    useEffect(() => {
         const ws = new WebSocket(`ws://localhost:8000/chats/ws/${chatId}`);
         wsRef.current = ws;
 
-        ws.onopen = () => {
-            console.log("Connected to WebSocket");
-        };
-
         ws.onmessage = (event) => {
-            try {
-                const message: Message = JSON.parse(event.data);
-                setMessages((prev) => [...prev, message]);
-            } catch (e) {
-                console.error("Invalid message format", e);
-            }
+            const msg: Message = JSON.parse(event.data);
+            setMessages((prev) => [...prev, msg]);
         };
 
-        ws.onclose = () => {
-            console.log("WebSocket closed");
-        };
-
-        return () => {
-            ws.close();
-        };
+        return () => ws.close();
     }, [chatId]);
 
-    // Автопрокрутка при новых сообщениях
+    // Автопрокрутка
     useEffect(() => {
         messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
     }, [messages]);
 
     const sendMessage = () => {
         if (!input.trim()) return;
-
-        const data = { text: input }; // только текст, sender_id сервер добавляет сам
-
-        wsRef.current?.send(JSON.stringify(data));
+        wsRef.current?.send(JSON.stringify({ text: input }));
         setInput("");
     };
 
     return (
         <div style={styles.container}>
             <div style={styles.messages}>
-                {messages.map((msg, i) => (
-                    <div
-                        key={i}
-                        style={{
-                            ...styles.messageBubble,
-                            alignSelf: msg.sender_id === userId ? "flex-end" : "flex-start",
-                            backgroundColor: msg.sender_id === userId ? "#DCF8C6" : "#FFF",
-                        }}
-                    >
-                        {msg.text}
-                    </div>
-                ))}
+                {messages.map((msg, i) => {
+                    const isMine = msg.sender_id === userId;
+
+                    return (
+                        <div
+                            key={i}
+                            style={{
+                                ...styles.messageBubble,
+                                alignSelf: isMine ? "flex-end" : "flex-start",
+                                backgroundColor: isMine ? "#C8E6C9" : "#FFFFFF",
+                                borderColor: isMine ? "#4CAF50" : "#ddd",
+                            }}
+                        >
+                            {msg.text}
+                            {msg.created_at && (
+                                <div style={styles.time}>
+                                    {new Date(msg.created_at).toLocaleTimeString()}
+                                </div>
+                            )}
+                        </div>
+                    );
+                })}
                 <div ref={messagesEndRef} />
             </div>
 
@@ -83,7 +85,6 @@ const Chat: React.FC<ChatProps> = ({ chatId, userId }) => {
                     onChange={(e) => setInput(e.target.value)}
                     style={styles.input}
                     placeholder="Введите сообщение..."
-                    onKeyDown={(e) => e.key === "Enter" && sendMessage()}
                 />
                 <button onClick={sendMessage} style={styles.button}>Отправить</button>
             </div>
@@ -100,7 +101,7 @@ const styles: Record<string, React.CSSProperties> = {
         display: "flex",
         flexDirection: "column",
         overflow: "hidden",
-        fontFamily: "Arial, sans-serif"
+        fontFamily: "Arial, sans-serif",
     },
     messages: {
         flex: 1,
@@ -109,7 +110,7 @@ const styles: Record<string, React.CSSProperties> = {
         flexDirection: "column",
         gap: "8px",
         overflowY: "auto",
-        backgroundColor: "#F5F5F5"
+        backgroundColor: "#F5F5F5",
     },
     messageBubble: {
         padding: "10px 14px",
@@ -117,19 +118,26 @@ const styles: Record<string, React.CSSProperties> = {
         maxWidth: "70%",
         fontSize: "14px",
         lineHeight: "18px",
-        border: "1px solid #ddd"
+        border: "1px solid",
+        position: "relative",
+    },
+    time: {
+        fontSize: "10px",
+        color: "#999",
+        textAlign: "right",
+        marginTop: "4px",
     },
     inputContainer: {
         display: "flex",
         padding: "10px",
-        borderTop: "1px solid #ccc"
+        borderTop: "1px solid #ccc",
     },
     input: {
         flex: 1,
         padding: "10px",
         borderRadius: "6px",
         border: "1px solid #ccc",
-        fontSize: "14px"
+        fontSize: "14px",
     },
     button: {
         marginLeft: "10px",
@@ -139,7 +147,7 @@ const styles: Record<string, React.CSSProperties> = {
         backgroundColor: "#4CAF50",
         color: "#fff",
         cursor: "pointer",
-    }
+    },
 };
 
 export default Chat;

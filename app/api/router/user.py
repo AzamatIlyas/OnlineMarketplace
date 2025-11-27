@@ -20,3 +20,10 @@ async def get_all_users():
 @router.get("/me", response_model=SUserPublic)
 async def get_me(user: User = Depends(get_current_user)):
     return user
+
+@router.get("/me/private")
+async def get_me_private(user: User = Depends(get_current_user)):
+    return {"id": user.id,
+            "email": user.email,
+            "username": user.name,
+            }

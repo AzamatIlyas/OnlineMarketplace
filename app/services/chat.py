@@ -12,4 +12,4 @@ class ChatService:
 
     @classmethod
     async def create_chat(cls, ad_id: int, user_id: int):
-        return await ChatDAO.create_chat(ad_id=ad_id, user_id=user_id)
+        return await ChatDAO.create_chat(ad_id=ad_id, buyer_id=user_id)

@@ -1,4 +1,4 @@
-from sqlalchemy import insert
+from sqlalchemy import insert, select
 
 from app.db.base import async_session_maker
 from app.db.models.message import Message
@@ -17,3 +17,10 @@ class MessageDAO(BaseDAO):
 
             message = result.fetchone()
             return message
+
+    @classmethod
+    async def get_messages(cls, chat_id: int):
+        async with async_session_maker() as session:
+            query = select(cls.model).where(cls.model.chat_id == chat_id)
+            result = await session.execute(query)
+            return result.scalars().all()

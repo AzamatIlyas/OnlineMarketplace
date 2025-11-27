@@ -1,31 +1,36 @@
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { logoutUser, getUserChats } from "../api";
-
-interface Chat {
-    id: number;
-    ads_id: number;
-    buyer_id: number;
-    seller_id: number;
-}
+import { logoutUser, getUserChats, getAuthenticatedUser, type Chat } from "../api"; // Импорт всего необходимого
 
 export default function MainPage() {
     const navigate = useNavigate();
     const [chats, setChats] = useState<Chat[]>([]);
+    const [isLoading, setIsLoading] = useState(true);
 
-    // Загружаем чаты пользователя при открытии страницы
+    // Загружаем чаты пользователя и проверяем аутентификацию
     useEffect(() => {
         const fetchChats = async () => {
             try {
+                // Сначала проверяем аутентификацию
+                await getAuthenticatedUser();
+
+                // Если аутентификация прошла успешно, загружаем чаты
                 const data = await getUserChats();
                 setChats(data);
-            } catch (err) {
-                console.error("Ошибка при загрузке чатов", err);
+            } catch (err: any) {
+                if (err.message === "Не аутентифицирован" || err.message === "Сессия истекла. Требуется повторный вход.") {
+                    // Если ошибка 401/403, перенаправляем
+                    navigate("/login");
+                } else {
+                    console.error("Ошибка при загрузке чатов:", err);
+                }
+            } finally {
+                setIsLoading(false);
             }
         };
 
         fetchChats();
-    }, []);
+    }, [navigate]);
 
     const handleLogout = async () => {
         await logoutUser();
@@ -35,6 +40,10 @@ export default function MainPage() {
     const openChat = (chatId: number) => {
         navigate(`/chat/${chatId}`);
     };
+
+    if (isLoading) {
+        return <div style={{ textAlign: "center", marginTop: 50 }}>Загрузка списка чатов...</div>;
+    }
 
     return (
         <div style={{ textAlign: "center", marginTop: 50 }}>

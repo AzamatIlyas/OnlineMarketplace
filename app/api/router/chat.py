@@ -3,7 +3,9 @@ from fastapi import APIRouter, Depends, WebSocket
 from app.api.dependencies import get_current_user
 from app.db.models.chat import Chat
 from app.db.models.user import User
+from app.schemas.message import SMessage
 from app.services.chat import ChatService
+from app.services.message import MessageService
 from app.services.websocket import WebsocketService
 
 router = APIRouter(
@@ -19,9 +21,9 @@ async def get_user_chats(user: User = Depends(get_current_user)):
 async def create_chat(ad_id: int, user: User = Depends(get_current_user)):
     return await ChatService.create_chat(ad_id=ad_id, user_id=user.id)
 
-# @router.get("/{chat_id}")
-# async def get_chat_messages(chat_id: int, user: User = Depends(get_current_user)):
-#     return await
+@router.get("/{chat_id}/messages", response_model=list[SMessage])
+async def get_chat_messages(chat_id: int, user: User = Depends(get_current_user)):
+    return await MessageService.get_message(chat_id=chat_id)
 
 @router.websocket("/ws/{chat_id}")
 async def chat_ws(
