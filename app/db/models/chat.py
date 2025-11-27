@@ -8,7 +8,7 @@ class Chat(Base):
     __tablename__ = "chats"
 
     id = Column(Integer, primary_key=True)
-    ad_id = Column(Integer, ForeignKey("ads.id"), nullable=False)
-    buyer_id = Column(Integer, ForeignKey("users.id"), nullable=False)
+    ad_id = Column(Integer, ForeignKey("ads.id", ondelete="CASCADE"), nullable=False)
+    buyer_id = Column(Integer, ForeignKey("users.id", ondelete="CASCADE"), nullable=False)
     created_at = Column(DateTime, default=datetime.utcnow)
-    seller_id = Column(Integer, ForeignKey("users.id"), nullable=False)
+    seller_id = Column(Integer, ForeignKey("users.id", ondelete="CASCADE"), nullable=False)

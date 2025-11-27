@@ -4,6 +4,7 @@ from fastapi import Response, Request, HTTPException, Depends
 from jose import jwt, JWTError
 
 from app.core.settings import settings
+from app.db.models.user import User
 from app.db.repository.user import UserDAO
 
 
@@ -13,14 +14,14 @@ def get_token(request: Request):
         raise HTTPException(status_code=401, detail="Unauthorized")
     return token
 
-async def get_current_user(token: str = Depends(get_token)):
+async def get_current_user(token: str = Depends(get_token)) ->User:
     try:
         payload = jwt.decode(token, settings.SECRET_KEY, algorithms=settings.ALGORITHM)
     except JWTError:
         raise HTTPException(status_code=401, detail="Invalid access token")
     expire: str = payload.get("exp")
-    if (not expire) and (int(expire) < datetime.utcnow().timestamp()):
-        raise HTTPException(status_code=401)
+    if not expire or int(expire) < datetime.utcnow().timestamp():
+        raise HTTPException(status_code=401, detail="Token expired")
     user_id = payload.get("sub")
     if not user_id:
         raise HTTPException(status_code=401, detail="Invalid access token")

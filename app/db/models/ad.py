@@ -15,5 +15,5 @@ class Ad(Base):
     price = Column(Numeric, nullable=False)
     title = Column(String, nullable=False)
     updated_at = Column(DateTime, nullable=False, default=datetime.utcnow)
-    user_id = Column(Integer, ForeignKey("users.id"), nullable=False)
+    user_id = Column(Integer, ForeignKey("users.id", ondelete="CASCADE"), nullable=False)
     image_url = Column(String, default="https://avatars.mds.yandex.net/i?id=94e1ac21200e722e68add82c7451d22c1de826f5-4820979-images-thumbs&n=13")

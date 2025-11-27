@@ -1,6 +1,7 @@
-from sqlalchemy import insert, select
-
+from sqlalchemy import insert, select, or_
+from fastapi import HTTPException
 from app.db.base import async_session_maker
+from app.db.models.chat import Chat
 from app.db.models.message import Message
 from app.db.repository.base import BaseDAO
 

@@ -27,4 +27,10 @@ class ChatDAO(BaseDAO):
             query = insert(cls.model).values(ad_id=ad_id, buyer_id=buyer_id, seller_id=ad.user_id)
             await session.execute(query)
             await session.commit()
-            
+
+    @classmethod
+    async def get_user_chat(cls, chat_id: int, user_id: int):
+        async with async_session_maker() as session:
+            query = select(cls.model).where(or_(cls.model.buyer_id == user_id, cls.model.seller_id == user_id), cls.model.id == chat_id)
+            result = await session.execute(query)
+            return result.scalars().first()

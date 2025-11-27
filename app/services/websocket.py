@@ -1,8 +1,9 @@
 import json
 
-from fastapi import WebSocket, WebSocketDisconnect
+from fastapi import WebSocket, WebSocketDisconnect, HTTPException
 
 from app.api.dependencies import get_current_user
+from app.db.repository.chat import ChatDAO
 from app.db.repository.message import MessageDAO
 from app.services.websocket_manager import manager
 
@@ -19,6 +20,15 @@ class WebsocketService:
 
         user = await get_current_user(token)
         if not user:
+            await websocket.close(code=1008)
+            return
+
+        chat = await ChatDAO.get_one_or_none(id=chat_id)
+        if not chat:
+            await websocket.close(code=1008)
+            return
+
+        if user.id not in (chat.seller_id, chat.buyer_id):
             await websocket.close(code=1008)
             return
 

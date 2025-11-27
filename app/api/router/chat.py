@@ -23,7 +23,7 @@ async def create_chat(ad_id: int, user: User = Depends(get_current_user)):
 
 @router.get("/{chat_id}/messages", response_model=list[SMessage])
 async def get_chat_messages(chat_id: int, user: User = Depends(get_current_user)):
-    return await MessageService.get_message(chat_id=chat_id)
+    return await MessageService.get_message(chat_id=chat_id, user_id=user.id)
 
 @router.websocket("/ws/{chat_id}")
 async def chat_ws(
