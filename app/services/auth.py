@@ -66,7 +66,7 @@ class AuthService:
         if not re.search(r"[!@#$%^&_*(),.?\":{}|<>]", password):
             raise HTTPException(status_code=400, detail="Password must contain at least 1 special character")
 
-        if "'" in password or '"' in password:
+        if "'" in password or '"' in password or "=" in password:
             raise ValueError("Нельзя использовать кавычки")
 
         existing_user = await UserDAO.get_one_or_none(email=email)

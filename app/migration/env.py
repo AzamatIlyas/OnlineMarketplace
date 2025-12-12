@@ -26,6 +26,7 @@ from app.db.models.order import Order
 from app.db.models.payment import Payment
 from app.db.models.report import Report
 from app.db.models.review import Review
+from app.db.models.user_history import UserHistory
 
 sys.path.insert(0, dirname(dirname(dirname(abspath(__file__)))))
 

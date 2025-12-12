@@ -14,7 +14,7 @@ class SAdCreate(BaseModel):
 class SAdPublic(SAdCreate):
 
     id: int
-    image_url: str
+    image_url: str | None = None
     created_at: datetime
     updated_at: datetime
     user_id: int

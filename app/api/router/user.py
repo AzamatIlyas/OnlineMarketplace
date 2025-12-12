@@ -5,6 +5,7 @@ from fastapi.params import Depends
 from app.api.dependencies import get_current_user
 from app.db.models.user import User
 from app.schemas.user import SUserPublic
+from app.services.report import ReportService
 from app.services.user import UserService
 
 router = APIRouter(
@@ -27,3 +28,15 @@ async def get_me_private(user: User = Depends(get_current_user)):
             "email": user.email,
             "username": user.name,
             }
+
+
+
+@router.get("/reports")
+async def get_my_reports(user: User = Depends(get_current_user)):
+    return await ReportService.get_my_reports(user_id=user.id)
+
+
+
+@router.get("/reports/{report_id}")
+async def get_my_report(report_id: int, user: User = Depends(get_current_user)):
+    return await ReportService.get_my_report(report_id=report_id, user_id=user.id)

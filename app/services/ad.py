@@ -1,3 +1,5 @@
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.metrics.pairwise import cosine_similarity
 import aiofiles
 import os
 import uuid
@@ -6,6 +8,7 @@ from fastapi import HTTPException
 from starlette.datastructures import UploadFile
 
 from app.db.repository.ad import AdDAO
+from app.db.repository.user_history import UserHistoryDAO
 from app.schemas.ad import SAdCreate
 
 
@@ -16,8 +19,22 @@ class AdService:
         return await AdDAO.get_all()
 
     @classmethod
-    async def get_by_id(cls, id):
-        return await AdDAO.get_one_or_none(id=id)
+    async def get_by_id(cls, ad_id: int, user_id: int):
+        ad = await AdDAO.get_one_or_none(id=ad_id)
+        await UserHistoryDAO.add(user_id=user_id, ad_id=ad_id)
+        await UserHistoryDAO.leave_limited_ads(user_id=user_id)
+        return ad
+
+    @classmethod
+    async def recommendation_ads(cls, user_id: int):
+        last_view = await UserHistoryDAO.get_last_views(user_id=user_id)
+
+        if not last_view:
+            return []
+
+        last_view_id = last_view.ad_id
+        recommendations = await cls.get_similar_ads_async(ad_id=last_view_id)
+        return recommendations
 
     @classmethod
     async def create_ad(cls, category_id: int, description: str, price: float,
@@ -59,4 +76,45 @@ class AdService:
     @classmethod
     async def search_ad_by_name(cls, name: str):
         return await AdDAO.search_ad_by_name(name=name)
+
+
+    @classmethod
+    async def get_similar_ads_async(cls, ad_id: int, top_n: int = 5):
+
+        ads = await AdDAO.get_all()
+
+        if not ads:
+            return []
+
+        # 2. Строим TF-IDF матрицу по title + description + category
+        texts = [f"{ad.title} {ad.description} category_{ad.category_id}" for ad in ads]
+        vectorizer = TfidfVectorizer(stop_words="english")
+        tfidf_matrix = vectorizer.fit_transform(texts)
+
+        similarity_matrix = cosine_similarity(tfidf_matrix)
+
+        # 3. Находим индекс текущего объявления
+        try:
+            index = next(i for i, ad in enumerate(ads) if ad.id == ad_id)
+        except StopIteration:
+            return []
+
+        # 4. Получаем топ-N похожих объявлений
+        scores = list(enumerate(similarity_matrix[index]))
+        scores = sorted(scores, key=lambda x: x[1], reverse=True)
+
+        similar_ads = [
+            {
+                "id": ads[i].id,
+                "title": ads[i].title,
+                "description": ads[i].description,
+                "price": float(ads[i].price),
+                "image_url": ads[i].image_url,
+                "score": float(score)
+            }
+            for i, score in scores[1: top_n + 1]  # исключаем сам ad_id
+        ]
+
+        return similar_ads
+
 

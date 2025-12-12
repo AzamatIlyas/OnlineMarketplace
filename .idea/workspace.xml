@@ -5,18 +5,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1002820a-58a3-4235-b9cb-8dafc247538a" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/app/api/router/recommendation.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/api/router/report.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/api/router/user_history.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/db/models/user_history.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/db/repository/report.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/db/repository/user_history.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/schemas/report.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/services/recommendation.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/services/report.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/services/user_history.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/api/dependencies.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/api/dependencies.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/api/router/chat.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/api/router/chat.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/api/router/ad_router/ad.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/api/router/ad_router/ad.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/api/router/user.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/api/router/user.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/db/models/ad.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/db/models/ad.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/db/models/chat.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/db/models/chat.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/db/repository/chat.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/db/repository/chat.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/db/repository/message.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/db/repository/message.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/db/models/report.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/db/models/report.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/migration/env.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/migration/env.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/schemas/ad.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/schemas/ad.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/services/ad.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/services/ad.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/services/auth.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/services/auth.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/services/message.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/services/message.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/services/websocket.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/services/websocket.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/services/websocket_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/services/websocket_manager.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -89,11 +97,35 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="main" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+      <module name="BIS project" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="C:\Users\azama\Desktop\BIS project\app\main.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-d6986cc7102b-a71380e98a7c-JavaScript-WS-252.28238.10" />
+        <option value="bundled-js-predefined-d6986cc7102b-3aa1da707db6-JavaScript-PY-252.27397.106" />
+        <option value="bundled-python-sdk-4e2b1448bda8-9a97661f3031-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-252.27397.106" />
       </set>
     </attachedChunks>
   </component>
@@ -125,7 +157,10 @@
       <workItem from="1764173459580" duration="7779000" />
       <workItem from="1764218218969" duration="5669000" />
       <workItem from="1764230462922" duration="15000" />
-      <workItem from="1764230552458" duration="12199000" />
+      <workItem from="1764230552458" duration="12599000" />
+      <workItem from="1764251074117" duration="2596000" />
+      <workItem from="1765382871414" duration="7224000" />
+      <workItem from="1765544426311" duration="7586000" />
     </task>
     <servers />
   </component>

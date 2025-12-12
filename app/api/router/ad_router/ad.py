@@ -29,9 +29,13 @@ async def create_ad(category_id: int = Form(...),title: str = Form(...),
 async def search_ad_by_name(name: str):
     return await AdService.search_ad_by_name(name=name)
 
+@router.get("/recommendations")
+async def recommendation_ads(user: User = Depends(get_current_user)):
+    return await AdService.recommendation_ads(user_id=user.id)
+
 @router.get("/{id}")
-async def get_by_id(id: int):
-    return await AdService.get_by_id(id=id)
+async def get_by_id(id: int, user: User = Depends(get_current_user)):
+    return await AdService.get_by_id(ad_id=id, user_id=user.id)
 
 @router.put("/{id}")
 async def update_by_id(id: int, ad: SAdCreate, user: User = Depends(get_current_user)):
