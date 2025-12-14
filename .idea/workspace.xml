@@ -5,26 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1002820a-58a3-4235-b9cb-8dafc247538a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/app/api/router/recommendation.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/api/router/report.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/api/router/user_history.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/db/models/user_history.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/db/repository/report.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/db/repository/user_history.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/schemas/report.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/services/recommendation.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/services/report.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/services/user_history.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/tasks/celery.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/tasks/tasks.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/api/router/ad_router/ad.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/api/router/ad_router/ad.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/api/router/user.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/api/router/user.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/db/models/ad.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/db/models/ad.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/db/models/report.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/db/models/report.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/db/repository/user.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/db/repository/user.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/migration/env.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/migration/env.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/schemas/ad.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/schemas/ad.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/services/ad.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/services/ad.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/services/auth.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/services/auth.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/services/user.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/services/user.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -160,7 +148,8 @@
       <workItem from="1764230552458" duration="12599000" />
       <workItem from="1764251074117" duration="2596000" />
       <workItem from="1765382871414" duration="7224000" />
-      <workItem from="1765544426311" duration="7586000" />
+      <workItem from="1765544426311" duration="13302000" />
+      <workItem from="1765701419737" duration="654000" />
     </task>
     <servers />
   </component>

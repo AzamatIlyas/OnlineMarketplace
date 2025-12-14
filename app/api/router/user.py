@@ -40,3 +40,8 @@ async def get_my_reports(user: User = Depends(get_current_user)):
 @router.get("/reports/{report_id}")
 async def get_my_report(report_id: int, user: User = Depends(get_current_user)):
     return await ReportService.get_my_report(report_id=report_id, user_id=user.id)
+
+
+@router.get("/ads")
+async def get_my_ads(user: User = Depends(get_current_user)):
+    return await UserService.get_my_ads(user_id=user.id)
