@@ -5,12 +5,15 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 
+from sqladmin import Admin, ModelView
+
 from fastapi_cache import FastAPICache
 from fastapi_cache.backends.redis import RedisBackend
 from fastapi_cache.decorator import cache
 
 from redis import asyncio as aioredis
 
+from app.admin.views import UserAdmin, AdAdmin
 from app.api.router.auth import router as auth_router
 from app.api.router.user import router as user_router
 from app.api.router.ad_router.ad import router as ad_router
@@ -21,6 +24,9 @@ from app.api.router.ad_likes import router as ad_likes_router
 from app.api.router.chat import router as chat_router
 from app.api.router.report import router as report_router
 from app.api.router.user_history import router as user_history_router
+from app.db.base import engine
+from app.db.models.user import User
+
 
 @asynccontextmanager
 async def lifespan(app: FastAPI) -> AsyncIterator[None]:
@@ -29,6 +35,12 @@ async def lifespan(app: FastAPI) -> AsyncIterator[None]:
     yield
 
 app = FastAPI(lifespan=lifespan)
+admin = Admin(app, engine)
+
+
+
+
+
 
 app.add_middleware(
     CORSMiddleware,
@@ -42,6 +54,14 @@ app.add_middleware(
 app.mount("/static", StaticFiles(directory="app/static"), name="static")
 
 
+# Admin Panel
+admin.add_view(UserAdmin)
+admin.add_view(AdAdmin)
+
+
+
+
+# User API's
 app.include_router(auth_router)
 app.include_router(user_router)
 app.include_router(category_router)

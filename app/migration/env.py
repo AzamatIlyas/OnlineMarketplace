@@ -16,16 +16,10 @@ from app.db.models.user import User
 from app.db.models.category import Category
 from app.db.models.ad import Ad
 from app.db.models.ad_like import AdLike
-from app.db.models.ad_view import AdView
-from app.db.models.ad_image import AdImage
 from app.db.models.chat import Chat
 from app.db.models.favourite import Favourite
 from app.db.models.message import Message
-from app.db.models.notification import Notification
-from app.db.models.order import Order
-from app.db.models.payment import Payment
 from app.db.models.report import Report
-from app.db.models.review import Review
 from app.db.models.user_history import UserHistory
 
 sys.path.insert(0, dirname(dirname(dirname(abspath(__file__)))))

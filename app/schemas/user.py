@@ -2,7 +2,9 @@ from pydantic import BaseModel
 
 
 class SUser(BaseModel):
-    name: str
+
+    first_name: str
+    last_name: str
     is_banned: bool
     is_verified: bool
 

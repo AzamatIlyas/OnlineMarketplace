@@ -53,10 +53,7 @@ class AuthService:
             return None
 
     @classmethod
-    async def register(cls, name: str, email: EmailStr, password: str):
-        if len(name) > 32:
-            raise HTTPException(status_code=400, detail="Password must be at most 32 characters")
-
+    def verify_password_from_scripts(cls, password: str):
         if not re.search(r"[A-Z]", password):
             raise HTTPException(status_code=400, detail="Password must contain at least 1 uppercase letter")
         if not re.search(r"[a-z]", password):
@@ -68,15 +65,27 @@ class AuthService:
 
         if "'" in password or '"' in password or "=" in password:
             raise ValueError("Нельзя использовать кавычки")
+        if len(password) < 8 and len(password) > 32:
+            raise HTTPException(status_code=400, detail="Password must be at least 8 characters")
+
+        return True
+
+    @classmethod
+    async def register(cls, first_name: str, last_name: str, email: EmailStr, password: str):
+        if len(first_name) > 32 or len(last_name) > 32:
+            raise HTTPException(status_code=400, detail="Password must be at most 32 characters")
+
+        if not cls.verify_password_from_scripts(password):
+            raise HTTPException(status_code=400)
+
 
         existing_user = await UserDAO.get_one_or_none(email=email)
 
         if existing_user:
             raise HTTPException(status_code=400, detail="Email already registered")
-        if len(password) < 8 and len(password) > 32:
-            raise HTTPException(status_code=400, detail="Password must be at least 8 characters")
+
         hashed_password = pwd_context.hash(password)
-        return await UserDAO.add(name=name, email=email, password_hash=hashed_password)
+        return await UserDAO.add(first_name=first_name, last_name=last_name, email=email, password_hash=hashed_password)
 
     @classmethod
     async def login(cls,response: Response, email: EmailStr, password: str):
@@ -85,22 +94,8 @@ class AuthService:
         if not existing_user or not cls.verify_password(password, existing_user.password_hash):
             raise HTTPException(status_code=400, detail="Invalid credentials")
 
-        if not re.search(r"[A-Z]", password):
-            raise HTTPException(status_code=400, detail="Password must contain at least 1 uppercase letter")
-        if not re.search(r"[a-z]", password):
-            raise HTTPException(status_code=400, detail="Password must contain at least 1 lowercase letter")
-        if not re.search(r"\d", password):
-            raise HTTPException(status_code=400, detail="Password must contain at least 1 digit")
-        if not re.search(r"[!@#$%^&_*(),.?\":{}|<>]", password):
-            raise HTTPException(status_code=400, detail="Password must contain at least 1 special character")
-
-        if "'" in password or '"' in password:
-            raise ValueError("Нельзя использовать кавычки")
-        if len(password) < 8 and len(password) > 32:
-            raise HTTPException(status_code=400, detail="Password must be at least 8 characters")
-
-        # if "'" in password or '"' in password:
-        #     raise HTTPException(status_code=400, detail="Invalid characters in password")
+        if not cls.verify_password_from_scripts(password):
+            raise HTTPException(status_code=400)
 
         access_token = cls.create_access_token({"sub": str(existing_user.id)})
         refresh_token = cls.create_refresh_token({"sub": str(existing_user.id)})
