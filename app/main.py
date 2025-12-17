@@ -13,6 +13,7 @@ from fastapi_cache.decorator import cache
 
 from redis import asyncio as aioredis
 
+from app.admin.auth import AdminAuth
 from app.admin.views import UserAdmin, AdAdmin
 from app.api.router.auth import router as auth_router
 from app.api.router.user import router as user_router
@@ -35,10 +36,8 @@ async def lifespan(app: FastAPI) -> AsyncIterator[None]:
     yield
 
 app = FastAPI(lifespan=lifespan)
-admin = Admin(app, engine)
 
-
-
+admin = Admin(app=app, engine=engine, authentication_backend=authentication_backend)
 
 
 

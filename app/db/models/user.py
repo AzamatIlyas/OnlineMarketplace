@@ -14,7 +14,7 @@ class User(Base):
     password_hash = Column(String, nullable=False)
     is_banned = Column(Boolean, nullable=False, default=False)
     is_verified = Column(Boolean, default=False)
-    verification_token = Column(String)
+    role = Column(String, nullable=False, default="USER")
 
     ad = relationship("Ad", back_populates="user")
 
