@@ -1,6 +1,7 @@
 # Виртуальное окружение
 venv/
-.env/
+.env
+alembic.ini
 
 # Python
 __pycache__/
@@ -9,6 +10,7 @@ __pycache__/
 # IDE
 .idea/
 .vscode/
+.gitignore
 
 # OS
 .DS_Store
