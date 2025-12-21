@@ -14,7 +14,7 @@ class UserAdmin(ModelView, model=User):
         User.is_banned,
         User.is_verified
     ]
-    column_details_exclude_list = [User.password_hash, User.verification_token]
+    column_details_exclude_list = [User.password_hash]
     can_delete = False
 
 

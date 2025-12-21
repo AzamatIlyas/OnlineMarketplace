@@ -5,6 +5,8 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 
+from app.admin.auth import authentication_backend
+
 from sqladmin import Admin, ModelView
 
 from fastapi_cache import FastAPICache
@@ -13,7 +15,6 @@ from fastapi_cache.decorator import cache
 
 from redis import asyncio as aioredis
 
-from app.admin.auth import AdminAuth
 from app.admin.views import UserAdmin, AdAdmin
 from app.api.router.auth import router as auth_router
 from app.api.router.user import router as user_router
@@ -43,7 +44,7 @@ admin = Admin(app=app, engine=engine, authentication_backend=authentication_back
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173", "http://172.20.10.2:5173"],
+    allow_origins=["http://localhost:5173", "http://172.20.10.2:5173", "http://localhost:3000"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

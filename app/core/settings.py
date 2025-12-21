@@ -17,7 +17,8 @@ class Settings(BaseSettings):
     SECRET_KEY: str
     REFRESH_KEY: str
     ALGORITHM: str
-    ADMIN_SECRET_KEY: str
+    ADMIN_USERNAME: str
+    ADMIN_PASSWORD: str
 
     class Config:
         env_file = ".env"

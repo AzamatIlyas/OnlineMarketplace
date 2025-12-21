@@ -1,18 +1,22 @@
 from sqladmin.authentication import AuthenticationBackend
 from starlette.requests import Request
-
 from app.core.settings import settings
 
 
 class AdminAuth(AuthenticationBackend):
     async def login(self, request: Request) -> bool:
         form = await request.form()
-        email, password = form["email"], form["password"]
+        username = form.get("username")
+        password = form.get("password")
 
-        # Validate credentials here
-        if username == "admin" and password == "secret":
-            request.session.update({"token": "some_secure_token"})
+        if (
+            username == settings.ADMIN_USERNAME
+            and password == settings.ADMIN_PASSWORD
+        ):
+            # ОБЯЗАТЕЛЬНО сохраняем что-то в session
+            request.session["admin"] = True
             return True
+
         return False
 
     async def logout(self, request: Request) -> bool:
@@ -20,10 +24,10 @@ class AdminAuth(AuthenticationBackend):
         return True
 
     async def authenticate(self, request: Request) -> bool:
-        token = request.session.get("token")
-        if not token:
-            return False
-        # Validate token here
-        return True
+        # Проверяем session
+        return request.session.get("admin", False)
 
-authentication_backend = AdminAuth(secret_key=settings.ADMIN_SECRET_KEY)
+
+authentication_backend = AdminAuth(
+    secret_key=settings.SECRET_KEY
+)
