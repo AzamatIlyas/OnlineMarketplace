@@ -15,7 +15,7 @@ from fastapi_cache.decorator import cache
 
 from redis import asyncio as aioredis
 
-from app.admin.views import UserAdmin, AdAdmin
+from app.admin.views import ReportAdmin, UserAdmin, AdAdmin
 from app.api.router.auth import router as auth_router
 from app.api.router.user import router as user_router
 from app.api.router.ad_router.ad import router as ad_router
@@ -57,6 +57,7 @@ app.mount("/static", StaticFiles(directory="app/static"), name="static")
 # Admin Panel
 admin.add_view(UserAdmin)
 admin.add_view(AdAdmin)
+admin.add_view(ReportAdmin)
 
 
 

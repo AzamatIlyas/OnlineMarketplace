@@ -17,7 +17,7 @@ class User(Base):
     role = Column(String, nullable=False, default="USER")
 
     ad = relationship("Ad", back_populates="user")
-
+    report = relationship("Report", foreign_keys="Report.reporter_id", back_populates="user")
 
     def __str__(self):
         return f"{self.email}"

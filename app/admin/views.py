@@ -2,6 +2,7 @@
 from sqladmin import ModelView
 
 from app.db.models.ad import Ad
+from app.db.models.report import Report
 from app.db.models.user import User
 
 
@@ -20,3 +21,7 @@ class UserAdmin(ModelView, model=User):
 
 class AdAdmin(ModelView, model = Ad):
     column_list = [c.name for c in Ad.__table__.columns] + [Ad.user]
+
+
+class ReportAdmin(ModelView, model=Report):
+    column_list = [c.name for c in Report.__table__.columns] + [Report.user]
