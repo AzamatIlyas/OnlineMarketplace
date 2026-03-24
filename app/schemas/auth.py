@@ -6,5 +6,4 @@ class SUserLogin(BaseModel):
     password: str
 
 class SUserRegister(SUserLogin):
-    first_name: str
-    last_name: str
+    full_name: str

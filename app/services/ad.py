@@ -3,10 +3,12 @@ from sklearn.metrics.pairwise import cosine_similarity
 import aiofiles
 import os
 import uuid
+from sqlalchemy import select
 
 from fastapi import HTTPException
 from starlette.datastructures import UploadFile
 
+from app.db.models.ad import Ad
 from app.db.repository.ad import AdDAO
 from app.db.repository.user_history import UserHistoryDAO
 from app.schemas.ad import SAdCreate
@@ -25,15 +27,45 @@ class AdService:
         await UserHistoryDAO.leave_limited_ads(user_id=user_id)
         return ad
 
+    # @classmethod
+    # async def recommendation_ads(cls, user_id: int):
+    #     last_view = await UserHistoryDAO.get_last_views(user_id=user_id)
+
+    #     if not last_view:
+    #         return []
+
+    #     last_view_id = last_view.ad_id
+    #     recommendations = await cls.get_similar_ads_async(ad_id=last_view_id)
+    #     return recommendations
+
     @classmethod
-    async def recommendation_ads(cls, user_id: int):
+    async def get_new_ads_async(cls, exclude_ids: set[int], limit: int):
+        return await AdDAO.get_new_ads_async(exclude_ids=exclude_ids, limit=limit)
+
+
+    @classmethod
+    async def recommendation_ads(cls, user_id: int, limit: int = 20):
         last_view = await UserHistoryDAO.get_last_views(user_id=user_id)
 
-        if not last_view:
-            return []
+        recommendations = []
 
-        last_view_id = last_view.ad_id
-        recommendations = await cls.get_similar_ads_async(ad_id=last_view_id)
+        
+        if last_view:
+            recommendations = await cls.get_similar_ads_async(
+                ad_id=last_view.ad_id,
+                limit=limit
+            )
+
+        if len(recommendations) < limit:
+            existing_ids = {ad.id for ad in recommendations}
+
+            new_ads = await cls.get_new_ads_async(
+                exclude_ids=existing_ids,
+                limit=limit - len(recommendations)
+            )
+
+            recommendations.extend(new_ads)
+
         return recommendations
 
     @classmethod

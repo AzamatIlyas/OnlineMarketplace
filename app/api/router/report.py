@@ -7,7 +7,7 @@ from app.schemas.report import SReportCreate
 from app.services.report import ReportService
 
 router = APIRouter(
-    prefix="/report",
+    prefix="/api/report",
     tags=["Report"],
 )
 

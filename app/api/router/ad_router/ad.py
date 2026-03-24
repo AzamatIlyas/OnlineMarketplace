@@ -9,12 +9,12 @@ from app.services.ad import AdService
 from fastapi_cache.decorator import cache
 
 router = APIRouter(
-    prefix="/ads",
+    prefix="/api/ads",
     tags=["ads"]
 )
 
 @router.get("", response_model=list[SAdPublic])
-@cache(expire=60)
+# @cache(expire=60)
 async def get_all():
     return await AdService.get_all()
 

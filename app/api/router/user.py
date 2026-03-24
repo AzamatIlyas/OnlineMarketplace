@@ -9,7 +9,7 @@ from app.services.report import ReportService
 from app.services.user import UserService
 
 router = APIRouter(
-    prefix="/users",
+    prefix="/api/users",
     tags=["User"]
 )
 
@@ -25,8 +25,7 @@ async def get_me(user: User = Depends(get_current_user)):
 @router.get("/me/private")
 async def get_me_private(user: User = Depends(get_current_user)):
     return {"id": user.id,
-            "email": user.email,
-            "username": user.name,
+            "email": user.email
             }
 
 

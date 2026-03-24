@@ -5,7 +5,7 @@ from app.db.models.user import User
 from app.services.ad_like import AdLikeService
 
 router = APIRouter(
-    prefix="/likes",
+    prefix="/api/likes",
     tags=["Likes"]
 )
 

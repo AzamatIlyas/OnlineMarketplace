@@ -5,7 +5,7 @@ from app.db.models.user import User
 from app.services.user_history import UserHistoryService
 
 router = APIRouter(
-    prefix="/view-history",
+    prefix="/api/view-history",
     tags=["user-history"],
 )
 

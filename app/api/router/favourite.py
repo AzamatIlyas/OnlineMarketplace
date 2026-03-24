@@ -6,7 +6,7 @@ from app.db.models.user import User
 from app.services.favourite import FavouriteService
 
 router = APIRouter(
-    prefix="/favourites",
+    prefix="/api/favourites",
     tags=["Favourites"]
 )
 

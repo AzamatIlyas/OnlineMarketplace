@@ -3,8 +3,7 @@ from pydantic import BaseModel
 
 class SUser(BaseModel):
 
-    first_name: str
-    last_name: str
+    full_name: str
     is_banned: bool
     is_verified: bool
 

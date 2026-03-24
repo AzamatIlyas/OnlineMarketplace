@@ -10,8 +10,7 @@ class UserAdmin(ModelView, model=User):
     column_list = [
         User.id,
         User.email,
-        User.first_name,
-        User.last_name,
+        User.full_name,
         User.is_banned,
         User.is_verified
     ]

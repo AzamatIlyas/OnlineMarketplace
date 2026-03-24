@@ -9,7 +9,7 @@ from app.services.message import MessageService
 from app.services.websocket import WebsocketService
 
 router = APIRouter(
-    prefix="/chats",
+    prefix="/api/chats",
     tags=["Chat"]
 )
 

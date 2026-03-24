@@ -5,7 +5,7 @@ from app.schemas.user import SUserPublic
 from app.services.category import CategoryService
 
 router = APIRouter(
-    prefix="/categories",
+    prefix="/api/categories",
     tags=["Categories"],
 )
 

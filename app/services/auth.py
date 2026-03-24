@@ -71,8 +71,8 @@ class AuthService:
         return True
 
     @classmethod
-    async def register(cls, first_name: str, last_name: str, email: EmailStr, password: str):
-        if len(first_name) > 32 or len(last_name) > 32:
+    async def register(cls, full_name: str, email: EmailStr, password: str):
+        if len(full_name) > 32:
             raise HTTPException(status_code=400, detail="Password must be at most 32 characters")
 
         if not cls.verify_password_from_scripts(password):
@@ -85,7 +85,7 @@ class AuthService:
             raise HTTPException(status_code=400, detail="Email already registered")
 
         hashed_password = pwd_context.hash(password)
-        return await UserDAO.add(first_name=first_name, last_name=last_name, email=email, password_hash=hashed_password)
+        return await UserDAO.add(full_name=full_name, email=email, password_hash=hashed_password)
 
     @classmethod
     async def login(cls,response: Response, email: EmailStr, password: str):
